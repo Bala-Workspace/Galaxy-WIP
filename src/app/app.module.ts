@@ -9,12 +9,14 @@ import { ContentComponent } from './content/content.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SearchCountryPipe } from './search-country.pipe';
+import { SortTableColumnPipe } from './sort-table-column.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ContentComponent
+    ContentComponent,
+    SortTableColumnPipe
       ],
   imports: [
     BrowserModule,
