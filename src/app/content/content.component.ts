@@ -10,7 +10,7 @@ import { HttpService } from '../http.service';
 export class ContentComponent implements OnInit {
 
   public genders = ["Male", "Female"];
-
+  query;
   public userModel = new User("", "", "", null);
 
   countryList;

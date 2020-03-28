@@ -8,12 +8,14 @@ import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { SearchCountryPipe } from './search-country.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ContentComponent
+    ContentComponent,
+    SearchCountryPipe
   ],
   imports: [
     BrowserModule,

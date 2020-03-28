@@ -1,64 +1,66 @@
 <div class="container">
-    <div id="form-container">
-      <!--{{ userForm.value | json}}-->
-      <!--{{ userModel | json}}-->
-      <!--{{ userForm.form.valid }}-->
-      <form class="form-inline" #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
-        <div class="form-group">
-          <label for="firstname">Firstname:</label>&nbsp;
-          <input type="text" [class.is-invalid]="fname.invalid && fname.touched" class="form-control" 
-          id="first-name" placeholder="Firstname" [(ngModel)]="userModel.fname" 
-          name="fname" #fname="ngModel" required>
-        </div>
-        <!--{{fname.className}}-->
-        <div class="form-group">
-          <label for="lastname">Lastname:</label>&nbsp;
-          <input type="text" class="form-control" [class.is-invalid]="lname.invalid && lname.touched"
-          id="last-name" placeholder="Lastname" [(ngModel)]="userModel.lname" 
-          name="lname" #lname="ngModel" required>
-        </div>
-        <div class="form-group">
-          <label for="gender">Gender:</label>&nbsp;
-          <select required #gender="ngModel" [class.is-invalid]="gender.invalid && gender.touched" class="form-control" id="gender" [(ngModel)]="userModel.gender" name="gender">
-            <option value="">Select</option>
-            <option *ngFor="let g of genders">{{ g }}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="age">Age:</label>&nbsp;
-          <input type="number" #age="ngModel" [class.is-invalid]="age.invalid && age.touched" 
-          class="form-control" id="age" placeholder="Age" [(ngModel)]="userModel.age" name="age" required>
-        </div>
-        <button [disabled]="userForm.form.invalid" type="submit" class="btn btn-success">Add</button>
-      </form>
-    </div>
-    
-    <div class="table-responsive">          
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Short Code</th>
-            <th>Population</th>
-            <th>Currency Symbol</th>
-                    
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let country of sliceCountry">
-            <td>{{country.name}}</td>
-            <td>{{country.alpha2Code}}</td>
-            <td>{{country.population}}</td>
-            <td>{{country.currencies[0].symbol}}</td>
-            
-            
-          </tr>
-          
-        </tbody>
-      </table>
-    </div>
-    <ul class="pagination">
-      <li *ngFor="let page of pageObj?.pages" [class.active]="currentPage == page" ><a href="#" (click)="navigate(page)">{{page}}</a></li>
-    
-    </ul>
+  <div id="form-container">
+    <!--{{ userForm.value | json}}-->
+    <!--{{ userModel | json}}-->
+    <!--{{ userForm.form.valid }}-->
+    <form class="form-inline" #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group">
+        <label for="firstname">Firstname:</label>&nbsp;
+        <input type="text" [class.is-invalid]="fname.invalid && fname.touched" class="form-control" id="first-name"
+          placeholder="Firstname" [(ngModel)]="userModel.fname" name="fname" #fname="ngModel" required>
+      </div>
+      <!--{{fname.className}}-->
+      <div class="form-group">
+        <label for="lastname">Lastname:</label>&nbsp;
+        <input type="text" class="form-control" [class.is-invalid]="lname.invalid && lname.touched" id="last-name"
+          placeholder="Lastname" [(ngModel)]="userModel.lname" name="lname" #lname="ngModel" required>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender:</label>&nbsp;
+        <select required #gender="ngModel" [class.is-invalid]="gender.invalid && gender.touched" class="form-control"
+          id="gender" [(ngModel)]="userModel.gender" name="gender">
+          <option value="">Select</option>
+          <option *ngFor="let g of genders">{{ g }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="age">Age:</label>&nbsp;
+        <input type="number" #age="ngModel" [class.is-invalid]="age.invalid && age.touched" class="form-control"
+          id="age" placeholder="Age" [(ngModel)]="userModel.age" name="age" required>
+      </div>
+      <button [disabled]="userForm.form.invalid" type="submit" class="btn btn-success">Add</button>
+    </form>
   </div>
+  <div class="form-group form-inline">
+    <input class="form-control" type="text" [(ngModel)]="query" placeholder="search">
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Short Code</th>
+          <th>Population</th>
+          <th>Currency Symbol</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let country of sliceCountry | searchCountry : query">
+          <td>{{country.name}}</td>
+          <td>{{country.alpha2Code}}</td>
+          <td>{{country.population}}</td>
+          <td>{{country.currencies[0].symbol}}</td>
+
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <ul class="pagination">
+    <li *ngFor="let page of pageObj?.pages" [class.active]="currentPage == page"><a href="#"
+        (click)="navigate(page)">{{page}}</a></li>
+
+  </ul>
+</div>
