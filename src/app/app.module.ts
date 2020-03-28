@@ -14,9 +14,8 @@ import { SearchCountryPipe } from './search-country.pipe';
   declarations: [
     AppComponent,
     HeaderComponent,
-    ContentComponent,
-    SearchCountryPipe
-  ],
+    ContentComponent
+      ],
   imports: [
     BrowserModule,
     AppRoutingModule,

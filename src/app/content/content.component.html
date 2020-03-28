@@ -32,7 +32,7 @@
     </form>
   </div>
   <div class="form-group form-inline">
-    <input class="form-control" type="text" [(ngModel)]="query" placeholder="search">
+    <input class="form-control" type="text" (keyup)="searchFilter()" [(ngModel)]="query" placeholder="search">
   </div>
   <div class="table-responsive">
     <table class="table table-hover">
@@ -46,7 +46,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let country of sliceCountry | searchCountry : query">
+        <tr *ngFor="let country of sliceCountry">
           <td>{{country.name}}</td>
           <td>{{country.alpha2Code}}</td>
           <td>{{country.population}}</td>

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../user";
 import { HttpService } from '../http.service';
+import { SearchCountryPipe } from '../search-country.pipe';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  styleUrls: ['./content.component.css'],
+  providers:[SearchCountryPipe]
 })
 export class ContentComponent implements OnInit {
 
@@ -25,19 +27,23 @@ export class ContentComponent implements OnInit {
 
   pageObj;
 
-  constructor(private http:HttpService) { }
+  constructor(private http:HttpService,private search:SearchCountryPipe) { }
 
   ngOnInit() {
     this.currentPage=1;
     this.pageSize=10;
     this.maxPages=5;
     this.getCountry();
-  
+    
   }
 
   onSubmit() {
     console.log(this.userModel);
   }
+
+    searchFilter(){
+      this.sliceCountry= this.search.transform(this.countryList,this.query);
+    }
 
   getCountry(){
     this.http.getCountries().subscribe(res =>{
