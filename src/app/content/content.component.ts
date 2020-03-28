@@ -16,6 +16,7 @@ export class ContentComponent implements OnInit {
   public userModel = new User("", "", "", null);
 
   countryList;
+  countryListres;
   sliceCountry;
 
   // pagination
@@ -42,16 +43,23 @@ export class ContentComponent implements OnInit {
   }
 
     searchFilter(){
-      this.sliceCountry= this.search.transform(this.countryList,this.query);
+      console.log(this.query);   
+      this.countryList= this.search.transform(this.countryListres,this.query);
+      this.processPageination();
     }
 
   getCountry(){
     this.http.getCountries().subscribe(res =>{
-      this.countryList=res;
-      this.totalItems=this.countryList.length; 
-      this.pageObj= this.paginate(this.totalItems,this.currentPage,this.pageSize,this.maxPages);   
-      this.sliceCountry=this.countryList.slice(this.pageObj.startIndex,this.pageObj.endIndex);
+      this.countryListres=res;
+      this.countryList=this.countryListres;
+     this.processPageination();
     })
+  }
+
+  processPageination(){
+    this.totalItems=this.countryList.length; 
+    this.pageObj= this.paginate(this.totalItems,this.currentPage,this.pageSize,this.maxPages);   
+    this.sliceCountry=this.countryList.slice(this.pageObj.startIndex,this.pageObj.endIndex);
   }
 
   navigate(page){
