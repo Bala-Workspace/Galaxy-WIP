@@ -77,10 +77,12 @@ export class ContentComponent implements OnInit {
   searchFilter() {
     console.log(this.query);
     this.countryList = this.search.transform(this.countryListres, this.query);
+    this.currentPage=1;
     this.processPageination();
   }
   sortTableColumn(columnName, asc, sortby) {
     this.countryList = this.sort.transform(this.countryList, columnName, asc, sortby);
+    this.currentPage=1;
     this.processPageination();
     this.asc = !this.asc;
     this.tableHeadig.map((array, index) => {
