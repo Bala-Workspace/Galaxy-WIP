@@ -12,18 +12,7 @@
       "alpha2Code": "AF",
       "population": 27657145
     },
-    {
-      "currencies": [
-        {
-          "code": "EUR",
-          "name": "Euro",
-          "symbol": "€"
-        }
-      ],
-      "name": "Åland Islands",
-      "alpha2Code": "AX",
-      "population": 28875
-    },
+    
     {
       "currencies": [
         {
