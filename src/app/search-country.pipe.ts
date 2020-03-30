@@ -6,10 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SearchCountryPipe implements PipeTransform {
 
   transform(value: any[], args: any): unknown {
-    debugger;
-    if (!value) return value;
-    if (!args) return value;
+    if (!value || !args) return value;
     args = args.toLowerCase();
+    console.log(value.filter(function (item) {
+      return JSON.stringify(item).toLowerCase().includes(args);
+    }));
     return value.filter(function (item) {
       return JSON.stringify(item).toLowerCase().includes(args);
     });

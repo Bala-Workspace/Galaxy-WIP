@@ -100,7 +100,7 @@ export class ContentComponent implements OnInit {
   processPageination() {
     this.totalItems = this.countryList.length;
     this.pageObj = this.paginate(this.totalItems, this.currentPage, this.pageSize, this.maxPages);
-    this.sliceCountry = this.countryList.slice(this.pageObj.startIndex, this.pageObj.endIndex);
+    this.sliceCountry = this.countryList.slice(this.pageObj.startIndex, this.pageObj.endIndex+1);
   }
 
   navigate(page) {
